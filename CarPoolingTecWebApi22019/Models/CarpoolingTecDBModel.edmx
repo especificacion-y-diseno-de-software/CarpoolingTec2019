@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CARPOOLINGTECWebApi2019_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AMIGOS">
+          <Key>
+            <PropertyRef Name="AA_id" />
+          </Key>
+          <Property Name="AA_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AA_userID" Type="int" Nullable="false" />
+          <Property Name="AA_amigoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CARRO">
+          <Key>
+            <PropertyRef Name="CA_placa" />
+          </Key>
+          <Property Name="CA_placa" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="CA_marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CA_modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CA_pasa_cant" Type="int" Nullable="false" />
+          <Property Name="CA_userID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIAS">
+          <Key>
+            <PropertyRef Name="CA_ID" />
+          </Key>
+          <Property Name="CA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CA_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CA_puntaje" Type="int" Nullable="false" />
+          <Property Name="CA_Umbral" Type="int" Nullable="false" />
+          <Property Name="CA_UmbralPmes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOTIFICACIONES">
+          <Key>
+            <PropertyRef Name="NO_ID" />
+          </Key>
+          <Property Name="NO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NO_userID" Type="int" Nullable="false" />
+          <Property Name="NO_type" Type="int" Nullable="false" />
+          <Property Name="NO_descrip" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OBJETOS_INTERCAMBIO">
+          <Key>
+            <PropertyRef Name="OI_ID" />
+          </Key>
+          <Property Name="OI_ID" Type="int" Nullable="false" />
+          <Property Name="OI_userID" Type="int" Nullable="false" />
+          <Property Name="OI_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OI_cantidad" Type="int" Nullable="false" />
+          <Property Name="OI_puntaje" Type="int" Nullable="false" />
+          <Property Name="OI_precio" Type="int" Nullable="false" />
+          <Property Name="OI_fecha" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TELEFONOS">
+          <Key>
+            <PropertyRef Name="TE_telefono" />
+          </Key>
+          <Property Name="TE_telefono" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="TE_userID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="US_ID" />
+          </Key>
+          <Property Name="US_ID" Type="int" Nullable="false" />
+          <Property Name="US_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="US_apellido1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="US_apellido2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="US_correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="US_rol" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="US_estadoCuenta" Type="int" />
+          <Property Name="US_categoria" Type="int" />
+        </EntityType>
+        <EntityType Name="VIAJES">
+          <Key>
+            <PropertyRef Name="VI_ID" />
+          </Key>
+          <Property Name="VI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VI_choferID" Type="int" Nullable="false" />
+          <Property Name="VI_fecha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VI_parqueo" Type="int" />
+          <Property Name="VI_placaCarro" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIAJESXUSUARIO">
+          <Key>
+            <PropertyRef Name="VU_codigoViaje" />
+          </Key>
+          <Property Name="VU_codigoViaje" Type="int" Nullable="false" />
+          <Property Name="VU_viajeID" Type="int" Nullable="false" />
+          <Property Name="VU_userID" Type="int" Nullable="false" />
+          <Property Name="VU_puntajeXviaje" Type="int" />
+        </EntityType>
+        <Association Name="FK__AMIGOS__AA_amigo__619B8048">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="AMIGOS" Type="Self.AMIGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="AMIGOS">
+              <PropertyRef Name="AA_amigoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AMIGOS__AA_userI__60A75C0F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="AMIGOS" Type="Self.AMIGOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="AMIGOS">
+              <PropertyRef Name="AA_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CARRO__CA_userID__5AEE82B9">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="CARRO">
+              <PropertyRef Name="CA_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTIFICAC__NO_us__02084FDA">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="NOTIFICACIONES" Type="Self.NOTIFICACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICACIONES">
+              <PropertyRef Name="NO_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OBJETOS_I__OI_us__628FA481">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OBJETOS_INTERCAMBIO" Type="Self.OBJETOS_INTERCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="OBJETOS_INTERCAMBIO">
+              <PropertyRef Name="OI_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TELEFONOS__TE_us__5FB337D6">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="TELEFONOS" Type="Self.TELEFONOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="TELEFONOS">
+              <PropertyRef Name="TE_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__US_cate__6383C8BA">
+          <End Role="CATEGORIAS" Type="Self.CATEGORIAS" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="CA_ID" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="US_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJES__VI_chofe__5BE2A6F2">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="VIAJES" Type="Self.VIAJES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="VIAJES">
+              <PropertyRef Name="VI_choferID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJES__VI_placa__5CD6CB2B">
+          <End Role="CARRO" Type="Self.CARRO" Multiplicity="1" />
+          <End Role="VIAJES" Type="Self.VIAJES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRO">
+              <PropertyRef Name="CA_placa" />
+            </Principal>
+            <Dependent Role="VIAJES">
+              <PropertyRef Name="VI_placaCarro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJESXUS__VU_us__5EBF139D">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="VIAJESXUSUARIO" Type="Self.VIAJESXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="VIAJESXUSUARIO">
+              <PropertyRef Name="VU_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJESXUS__VU_vi__5DCAEF64">
+          <End Role="VIAJES" Type="Self.VIAJES" Multiplicity="1" />
+          <End Role="VIAJESXUSUARIO" Type="Self.VIAJESXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIAJES">
+              <PropertyRef Name="VI_ID" />
+            </Principal>
+            <Dependent Role="VIAJESXUSUARIO">
+              <PropertyRef Name="VU_viajeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_DelAmigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="amigoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DelCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_DelCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DelNotifi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DelTelefono" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DelUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetAllUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetAmigos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetCantPassViaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetInfoViaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="viajeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetNotifi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetObjIntercambios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetPuntosGanados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetPuntosGastados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetTelefonos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_GetViajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostAmigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="amigoID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostCarro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="varchar" Mode="In" />
+          <Parameter Name="marca" Type="varchar" Mode="In" />
+          <Parameter Name="modelo" Type="varchar" Mode="In" />
+          <Parameter Name="pas_cant" Type="int" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="puntaje" Type="int" Mode="In" />
+          <Parameter Name="umbral" Type="int" Mode="In" />
+          <Parameter Name="umbralPmes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostNotifi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="info" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostObjIntercambio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="puntaje" Type="int" Mode="In" />
+          <Parameter Name="precio" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostTelefono" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido1" Type="varchar" Mode="In" />
+          <Parameter Name="apellido2" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="rol" Type="varchar" Mode="In" />
+          <Parameter Name="estadoCuenta" Type="int" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PostViajes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="choferID" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="placaCarro" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PostViajesXusuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="viajeID" Type="int" Mode="In" />
+          <Parameter Name="codigoViaje" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PutCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="puntaje" Type="int" Mode="In" />
+          <Parameter Name="umbral" Type="int" Mode="In" />
+          <Parameter Name="umbralPmes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PutNoParqueo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="parqueo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PutPuntaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="viajeID" Type="int" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="puntaje" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PutUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido1" Type="varchar" Mode="In" />
+          <Parameter Name="apellido2" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="estadoCuenta" Type="int" Mode="In" />
+          <Parameter Name="categoria" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CARPOOLINGTECWebApi2019_dbModelStoreContainer">
+          <EntitySet Name="AMIGOS" EntityType="Self.AMIGOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CARRO" EntityType="Self.CARRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOTIFICACIONES" EntityType="Self.NOTIFICACIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OBJETOS_INTERCAMBIO" EntityType="Self.OBJETOS_INTERCAMBIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TELEFONOS" EntityType="Self.TELEFONOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIAJES" EntityType="Self.VIAJES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIAJESXUSUARIO" EntityType="Self.VIAJESXUSUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AMIGOS__AA_amigo__619B8048" Association="Self.FK__AMIGOS__AA_amigo__619B8048">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="AMIGOS" EntitySet="AMIGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AMIGOS__AA_userI__60A75C0F" Association="Self.FK__AMIGOS__AA_userI__60A75C0F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="AMIGOS" EntitySet="AMIGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CARRO__CA_userID__5AEE82B9" Association="Self.FK__CARRO__CA_userID__5AEE82B9">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CARRO" EntitySet="CARRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAC__NO_us__02084FDA" Association="Self.FK__NOTIFICAC__NO_us__02084FDA">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="NOTIFICACIONES" EntitySet="NOTIFICACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OBJETOS_I__OI_us__628FA481" Association="Self.FK__OBJETOS_I__OI_us__628FA481">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="OBJETOS_INTERCAMBIO" EntitySet="OBJETOS_INTERCAMBIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TELEFONOS__TE_us__5FB337D6" Association="Self.FK__TELEFONOS__TE_us__5FB337D6">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="TELEFONOS" EntitySet="TELEFONOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__US_cate__6383C8BA" Association="Self.FK__USUARIO__US_cate__6383C8BA">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJES__VI_chofe__5BE2A6F2" Association="Self.FK__VIAJES__VI_chofe__5BE2A6F2">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="VIAJES" EntitySet="VIAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJES__VI_placa__5CD6CB2B" Association="Self.FK__VIAJES__VI_placa__5CD6CB2B">
+            <End Role="CARRO" EntitySet="CARRO" />
+            <End Role="VIAJES" EntitySet="VIAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJESXUS__VU_us__5EBF139D" Association="Self.FK__VIAJESXUS__VU_us__5EBF139D">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="VIAJESXUSUARIO" EntitySet="VIAJESXUSUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJESXUS__VU_vi__5DCAEF64" Association="Self.FK__VIAJESXUS__VU_vi__5DCAEF64">
+            <End Role="VIAJES" EntitySet="VIAJES" />
+            <End Role="VIAJESXUSUARIO" EntitySet="VIAJESXUSUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CARPOOLINGTECWebApi2019_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AMIGO">
+          <Key>
+            <PropertyRef Name="AA_id" />
+          </Key>
+          <Property Name="AA_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AA_userID" Type="Int32" Nullable="false" />
+          <Property Name="AA_amigoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__AMIGOS__AA_amigo__619B8048" FromRole="AMIGOS" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIO1" Relationship="Self.FK__AMIGOS__AA_userI__60A75C0F" FromRole="AMIGOS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="CARRO">
+          <Key>
+            <PropertyRef Name="CA_placa" />
+          </Key>
+          <Property Name="CA_placa" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CA_marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CA_modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CA_pasa_cant" Type="Int32" Nullable="false" />
+          <Property Name="CA_userID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__CARRO__CA_userID__5AEE82B9" FromRole="CARRO" ToRole="USUARIO" />
+          <NavigationProperty Name="VIAJES" Relationship="Self.FK__VIAJES__VI_placa__5CD6CB2B" FromRole="CARRO" ToRole="VIAJES" />
+        </EntityType>
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="CA_ID" />
+          </Key>
+          <Property Name="CA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CA_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CA_puntaje" Type="Int32" Nullable="false" />
+          <Property Name="CA_Umbral" Type="Int32" Nullable="false" />
+          <Property Name="CA_UmbralPmes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIOs" Relationship="Self.FK__USUARIO__US_cate__6383C8BA" FromRole="CATEGORIAS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="OBJETOS_INTERCAMBIO">
+          <Key>
+            <PropertyRef Name="OI_ID" />
+          </Key>
+          <Property Name="OI_ID" Type="Int32" Nullable="false" />
+          <Property Name="OI_userID" Type="Int32" Nullable="false" />
+          <Property Name="OI_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OI_cantidad" Type="Int32" Nullable="false" />
+          <Property Name="OI_puntaje" Type="Int32" Nullable="false" />
+          <Property Name="OI_precio" Type="Int32" Nullable="false" />
+          <Property Name="OI_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__OBJETOS_I__OI_us__628FA481" FromRole="OBJETOS_INTERCAMBIO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="TELEFONO">
+          <Key>
+            <PropertyRef Name="TE_telefono" />
+          </Key>
+          <Property Name="TE_telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TE_userID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__TELEFONOS__TE_us__5FB337D6" FromRole="TELEFONOS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="US_ID" />
+          </Key>
+          <Property Name="US_ID" Type="Int32" Nullable="false" />
+          <Property Name="US_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_rol" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_estadoCuenta" Type="Int32" />
+          <Property Name="US_categoria" Type="Int32" />
+          <NavigationProperty Name="AMIGOS" Relationship="Self.FK__AMIGOS__AA_amigo__619B8048" FromRole="USUARIO" ToRole="AMIGOS" />
+          <NavigationProperty Name="AMIGOS1" Relationship="Self.FK__AMIGOS__AA_userI__60A75C0F" FromRole="USUARIO" ToRole="AMIGOS" />
+          <NavigationProperty Name="CARROes" Relationship="Self.FK__CARRO__CA_userID__5AEE82B9" FromRole="USUARIO" ToRole="CARRO" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__USUARIO__US_cate__6383C8BA" FromRole="USUARIO" ToRole="CATEGORIAS" />
+          <NavigationProperty Name="OBJETOS_INTERCAMBIO" Relationship="Self.FK__OBJETOS_I__OI_us__628FA481" FromRole="USUARIO" ToRole="OBJETOS_INTERCAMBIO" />
+          <NavigationProperty Name="TELEFONOS" Relationship="Self.FK__TELEFONOS__TE_us__5FB337D6" FromRole="USUARIO" ToRole="TELEFONOS" />
+          <NavigationProperty Name="VIAJES" Relationship="Self.FK__VIAJES__VI_chofe__5BE2A6F2" FromRole="USUARIO" ToRole="VIAJES" />
+          <NavigationProperty Name="VIAJESXUSUARIOs" Relationship="Self.FK__VIAJESXUS__VU_us__5EBF139D" FromRole="USUARIO" ToRole="VIAJESXUSUARIO" />
+          <NavigationProperty Name="NOTIFICACIONES" Relationship="CARPOOLINGTECWebApi2019_dbModel.FK__NOTIFICAC__NO_us__02084FDA" FromRole="USUARIO" ToRole="NOTIFICACIONE" />
+        </EntityType>
+        <EntityType Name="VIAJE">
+          <Key>
+            <PropertyRef Name="VI_ID" />
+          </Key>
+          <Property Name="VI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VI_choferID" Type="Int32" Nullable="false" />
+          <Property Name="VI_fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VI_parqueo" Type="Int32" />
+          <Property Name="VI_placaCarro" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CARRO" Relationship="Self.FK__VIAJES__VI_placa__5CD6CB2B" FromRole="VIAJES" ToRole="CARRO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__VIAJES__VI_chofe__5BE2A6F2" FromRole="VIAJES" ToRole="USUARIO" />
+          <NavigationProperty Name="VIAJESXUSUARIOs" Relationship="Self.FK__VIAJESXUS__VU_vi__5DCAEF64" FromRole="VIAJES" ToRole="VIAJESXUSUARIO" />
+        </EntityType>
+        <EntityType Name="VIAJESXUSUARIO">
+          <Key>
+            <PropertyRef Name="VU_codigoViaje" />
+          </Key>
+          <Property Name="VU_codigoViaje" Type="Int32" Nullable="false" />
+          <Property Name="VU_viajeID" Type="Int32" Nullable="false" />
+          <Property Name="VU_userID" Type="Int32" Nullable="false" />
+          <Property Name="VU_puntajeXviaje" Type="Int32" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__VIAJESXUS__VU_us__5EBF139D" FromRole="VIAJESXUSUARIO" ToRole="USUARIO" />
+          <NavigationProperty Name="VIAJE" Relationship="Self.FK__VIAJESXUS__VU_vi__5DCAEF64" FromRole="VIAJESXUSUARIO" ToRole="VIAJES" />
+        </EntityType>
+        <Association Name="FK__AMIGOS__AA_amigo__619B8048">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="AMIGOS" Type="Self.AMIGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="AMIGOS">
+              <PropertyRef Name="AA_amigoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AMIGOS__AA_userI__60A75C0F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="AMIGOS" Type="Self.AMIGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="AMIGOS">
+              <PropertyRef Name="AA_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CARRO__CA_userID__5AEE82B9">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CARRO" Type="Self.CARRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="CARRO">
+              <PropertyRef Name="CA_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJES__VI_placa__5CD6CB2B">
+          <End Role="CARRO" Type="Self.CARRO" Multiplicity="1" />
+          <End Role="VIAJES" Type="Self.VIAJE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRO">
+              <PropertyRef Name="CA_placa" />
+            </Principal>
+            <Dependent Role="VIAJES">
+              <PropertyRef Name="VI_placaCarro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__US_cate__6383C8BA">
+          <End Role="CATEGORIAS" Type="Self.CATEGORIA" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIAS">
+              <PropertyRef Name="CA_ID" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="US_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OBJETOS_I__OI_us__628FA481">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OBJETOS_INTERCAMBIO" Type="Self.OBJETOS_INTERCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="OBJETOS_INTERCAMBIO">
+              <PropertyRef Name="OI_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TELEFONOS__TE_us__5FB337D6">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="TELEFONOS" Type="Self.TELEFONO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="TELEFONOS">
+              <PropertyRef Name="TE_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJES__VI_chofe__5BE2A6F2">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="VIAJES" Type="Self.VIAJE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="VIAJES">
+              <PropertyRef Name="VI_choferID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJESXUS__VU_us__5EBF139D">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="VIAJESXUSUARIO" Type="Self.VIAJESXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="VIAJESXUSUARIO">
+              <PropertyRef Name="VU_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VIAJESXUS__VU_vi__5DCAEF64">
+          <End Role="VIAJES" Type="Self.VIAJE" Multiplicity="1" />
+          <End Role="VIAJESXUSUARIO" Type="Self.VIAJESXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIAJES">
+              <PropertyRef Name="VI_ID" />
+            </Principal>
+            <Dependent Role="VIAJESXUSUARIO">
+              <PropertyRef Name="VU_viajeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CARPOOLINGTECWebApi2019_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AMIGOS" EntityType="Self.AMIGO" />
+          <EntitySet Name="CARROes" EntityType="Self.CARRO" />
+          <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="OBJETOS_INTERCAMBIO" EntityType="Self.OBJETOS_INTERCAMBIO" />
+          <EntitySet Name="TELEFONOS" EntityType="Self.TELEFONO" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+          <EntitySet Name="VIAJES" EntityType="Self.VIAJE" />
+          <EntitySet Name="VIAJESXUSUARIOs" EntityType="Self.VIAJESXUSUARIO" />
+          <AssociationSet Name="FK__AMIGOS__AA_amigo__619B8048" Association="Self.FK__AMIGOS__AA_amigo__619B8048">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="AMIGOS" EntitySet="AMIGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AMIGOS__AA_userI__60A75C0F" Association="Self.FK__AMIGOS__AA_userI__60A75C0F">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="AMIGOS" EntitySet="AMIGOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CARRO__CA_userID__5AEE82B9" Association="Self.FK__CARRO__CA_userID__5AEE82B9">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="CARRO" EntitySet="CARROes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJES__VI_placa__5CD6CB2B" Association="Self.FK__VIAJES__VI_placa__5CD6CB2B">
+            <End Role="CARRO" EntitySet="CARROes" />
+            <End Role="VIAJES" EntitySet="VIAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__US_cate__6383C8BA" Association="Self.FK__USUARIO__US_cate__6383C8BA">
+            <End Role="CATEGORIAS" EntitySet="CATEGORIAS" />
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OBJETOS_I__OI_us__628FA481" Association="Self.FK__OBJETOS_I__OI_us__628FA481">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="OBJETOS_INTERCAMBIO" EntitySet="OBJETOS_INTERCAMBIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TELEFONOS__TE_us__5FB337D6" Association="Self.FK__TELEFONOS__TE_us__5FB337D6">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="TELEFONOS" EntitySet="TELEFONOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJES__VI_chofe__5BE2A6F2" Association="Self.FK__VIAJES__VI_chofe__5BE2A6F2">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="VIAJES" EntitySet="VIAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJESXUS__VU_us__5EBF139D" Association="Self.FK__VIAJESXUS__VU_us__5EBF139D">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="VIAJESXUSUARIO" EntitySet="VIAJESXUSUARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VIAJESXUS__VU_vi__5DCAEF64" Association="Self.FK__VIAJESXUS__VU_vi__5DCAEF64">
+            <End Role="VIAJES" EntitySet="VIAJES" />
+            <End Role="VIAJESXUSUARIO" EntitySet="VIAJESXUSUARIOs" />
+          </AssociationSet>
+          <FunctionImport Name="usp_DelAmigo">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="amigoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DelCarro">
+          <Parameter Name="placa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DelCategoria">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DelTelefono">
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DelUsuario">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetAmigos" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetAmigos_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetCantPassViaje" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetCantPassViaje_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetCarro" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetCarro_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetCategorias" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetCategorias_Result)" />
+          <FunctionImport Name="usp_GetInfoViaje" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetInfoViaje_Result)">
+          <Parameter Name="viajeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetObjIntercambios" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetObjIntercambios_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetPuntosGastados" ReturnType="Collection(Int32)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetTelefonos" ReturnType="Collection(String)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetUsuario" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetUsuario_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetViajes" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetViajes_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostAmigo">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="amigoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostCarro">
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="modelo" Mode="In" Type="String" />
+            <Parameter Name="pas_cant" Mode="In" Type="Int32" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostCategoria">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="puntaje" Mode="In" Type="Int32" />
+            <Parameter Name="umbral" Mode="In" Type="Int32" />
+            <Parameter Name="umbralPmes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostObjIntercambio">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="puntaje" Mode="In" Type="Int32" />
+            <Parameter Name="precio" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostTelefono">
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostUsuario">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido1" Mode="In" Type="String" />
+            <Parameter Name="apellido2" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="rol" Mode="In" Type="String" />
+            <Parameter Name="estadoCuenta" Mode="In" Type="Int32" />
+            <Parameter Name="categoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostViajes" ReturnType="Collection(Int32)">
+            <Parameter Name="choferID" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="placaCarro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PutCategoria">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="puntaje" Mode="In" Type="Int32" />
+            <Parameter Name="umbral" Mode="In" Type="Int32" />
+            <Parameter Name="umbralPmes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PutNoParqueo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="parqueo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PutPuntaje">
+            <Parameter Name="viajeID" Mode="In" Type="Int32" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="puntaje" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PutUsuario">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido1" Mode="In" Type="String" />
+            <Parameter Name="apellido2" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="estadoCuenta" Mode="In" Type="Int32" />
+            <Parameter Name="categoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostViajesXusuario">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="viajeID" Mode="In" Type="Int32" />
+            <Parameter Name="codigoViaje" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetPuntosGanados" ReturnType="Collection(Int32)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetAllUser" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetAllUser_Result)" />
+          <EntitySet Name="NOTIFICACIONES" EntityType="CARPOOLINGTECWebApi2019_dbModel.NOTIFICACIONE" />
+          <AssociationSet Name="FK__NOTIFICAC__NO_us__02084FDA" Association="CARPOOLINGTECWebApi2019_dbModel.FK__NOTIFICAC__NO_us__02084FDA">
+            <End Role="USUARIO" EntitySet="USUARIOs" />
+            <End Role="NOTIFICACIONE" EntitySet="NOTIFICACIONES" />
+          </AssociationSet>
+          <FunctionImport Name="usp_DelNotifi">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetNotifi" ReturnType="Collection(CARPOOLINGTECWebApi2019_dbModel.usp_GetNotifi_Result)">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PostNotifi">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="info" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_GetAmigos_Result">
+          <Property Type="Int32" Name="AA_amigoID" Nullable="false" />
+          <Property Type="String" Name="US_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_apellido1" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_GetCantPassViaje_Result">
+          <Property Type="Int32" Name="cantPass" Nullable="true" />
+          <Property Type="Int32" Name="VU_viajeID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetCarro_Result">
+          <Property Type="String" Name="CA_placa" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="CA_marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CA_modelo" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CA_pasa_cant" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetCategorias_Result">
+          <Property Type="Int32" Name="CA_ID" Nullable="false" />
+          <Property Type="String" Name="CA_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CA_puntaje" Nullable="false" />
+          <Property Type="Int32" Name="CA_Umbral" Nullable="false" />
+          <Property Type="Int32" Name="CA_UmbralPmes" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetInfoViaje_Result">
+          <Property Type="String" Name="US_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_apellido1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CA_marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CA_modelo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CA_placa" Nullable="false" MaxLength="6" />
+        </ComplexType>
+        <ComplexType Name="usp_GetObjIntercambios_Result">
+          <Property Type="String" Name="OI_fecha" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="OI_ID" Nullable="false" />
+          <Property Type="String" Name="OI_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="OI_cantidad" Nullable="false" />
+          <Property Type="Int32" Name="OI_precio" Nullable="false" />
+          <Property Type="Int32" Name="OI_puntaje" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetUsuario_Result">
+          <Property Type="Int32" Name="US_ID" Nullable="false" />
+          <Property Type="String" Name="US_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_apellido1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_apellido2" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_rol" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="US_estadoCuenta" Nullable="true" />
+          <Property Type="Int32" Name="US_categoria" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_GetViajes_Result">
+          <Property Type="String" Name="US_nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="US_apellido1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VI_fecha" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="VI_parqueo" Nullable="true" />
+          <Property Type="Int32" Name="VU_puntajeXviaje" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_GetAllUser_Result">
+          <Property Type="Int32" Name="US_ID" Nullable="false" />
+          <Property Type="String" Name="US_nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="NOTIFICACIONE">
+          <Key>
+            <PropertyRef Name="NO_ID" />
+          </Key>
+          <Property Name="NO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NO_userID" Type="Int32" Nullable="false" />
+          <Property Name="NO_type" Type="Int32" Nullable="false" />
+          <Property Name="NO_descrip" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIO" Relationship="CARPOOLINGTECWebApi2019_dbModel.FK__NOTIFICAC__NO_us__02084FDA" FromRole="NOTIFICACIONE" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK__NOTIFICAC__NO_us__02084FDA">
+          <End Type="CARPOOLINGTECWebApi2019_dbModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="CARPOOLINGTECWebApi2019_dbModel.NOTIFICACIONE" Role="NOTIFICACIONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICACIONE">
+              <PropertyRef Name="NO_userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_GetNotifi_Result">
+          <Property Type="Int32" Name="NO_ID" Nullable="false" />
+          <Property Type="Int32" Name="NO_userID" Nullable="false" />
+          <Property Type="Int32" Name="NO_type" Nullable="false" />
+          <Property Type="String" Name="NO_descrip" Nullable="false" MaxLength="128" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CARPOOLINGTECWebApi2019_dbModelStoreContainer" CdmEntityContainer="CARPOOLINGTECWebApi2019_dbEntities">
+          <EntitySetMapping Name="AMIGOS">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.AMIGO">
+              <MappingFragment StoreEntitySet="AMIGOS">
+                <ScalarProperty Name="AA_id" ColumnName="AA_id" />
+                <ScalarProperty Name="AA_userID" ColumnName="AA_userID" />
+                <ScalarProperty Name="AA_amigoID" ColumnName="AA_amigoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CARROes">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.CARRO">
+              <MappingFragment StoreEntitySet="CARRO">
+                <ScalarProperty Name="CA_placa" ColumnName="CA_placa" />
+                <ScalarProperty Name="CA_marca" ColumnName="CA_marca" />
+                <ScalarProperty Name="CA_modelo" ColumnName="CA_modelo" />
+                <ScalarProperty Name="CA_pasa_cant" ColumnName="CA_pasa_cant" />
+                <ScalarProperty Name="CA_userID" ColumnName="CA_userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIAS">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIAS">
+                <ScalarProperty Name="CA_ID" ColumnName="CA_ID" />
+                <ScalarProperty Name="CA_nombre" ColumnName="CA_nombre" />
+                <ScalarProperty Name="CA_puntaje" ColumnName="CA_puntaje" />
+                <ScalarProperty Name="CA_Umbral" ColumnName="CA_Umbral" />
+                <ScalarProperty Name="CA_UmbralPmes" ColumnName="CA_UmbralPmes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OBJETOS_INTERCAMBIO">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.OBJETOS_INTERCAMBIO">
+              <MappingFragment StoreEntitySet="OBJETOS_INTERCAMBIO">
+                <ScalarProperty Name="OI_ID" ColumnName="OI_ID" />
+                <ScalarProperty Name="OI_userID" ColumnName="OI_userID" />
+                <ScalarProperty Name="OI_nombre" ColumnName="OI_nombre" />
+                <ScalarProperty Name="OI_cantidad" ColumnName="OI_cantidad" />
+                <ScalarProperty Name="OI_puntaje" ColumnName="OI_puntaje" />
+                <ScalarProperty Name="OI_precio" ColumnName="OI_precio" />
+                <ScalarProperty Name="OI_fecha" ColumnName="OI_fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TELEFONOS">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.TELEFONO">
+              <MappingFragment StoreEntitySet="TELEFONOS">
+                <ScalarProperty Name="TE_telefono" ColumnName="TE_telefono" />
+                <ScalarProperty Name="TE_userID" ColumnName="TE_userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="US_ID" ColumnName="US_ID" />
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+                <ScalarProperty Name="US_apellido1" ColumnName="US_apellido1" />
+                <ScalarProperty Name="US_apellido2" ColumnName="US_apellido2" />
+                <ScalarProperty Name="US_correo" ColumnName="US_correo" />
+                <ScalarProperty Name="US_rol" ColumnName="US_rol" />
+                <ScalarProperty Name="US_estadoCuenta" ColumnName="US_estadoCuenta" />
+                <ScalarProperty Name="US_categoria" ColumnName="US_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIAJES">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.VIAJE">
+              <MappingFragment StoreEntitySet="VIAJES">
+                <ScalarProperty Name="VI_ID" ColumnName="VI_ID" />
+                <ScalarProperty Name="VI_choferID" ColumnName="VI_choferID" />
+                <ScalarProperty Name="VI_fecha" ColumnName="VI_fecha" />
+                <ScalarProperty Name="VI_parqueo" ColumnName="VI_parqueo" />
+                <ScalarProperty Name="VI_placaCarro" ColumnName="VI_placaCarro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIAJESXUSUARIOs">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.VIAJESXUSUARIO">
+              <MappingFragment StoreEntitySet="VIAJESXUSUARIO">
+                <ScalarProperty Name="VU_codigoViaje" ColumnName="VU_codigoViaje" />
+                <ScalarProperty Name="VU_viajeID" ColumnName="VU_viajeID" />
+                <ScalarProperty Name="VU_userID" ColumnName="VU_userID" />
+                <ScalarProperty Name="VU_puntajeXviaje" ColumnName="VU_puntajeXviaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_DelAmigo" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelAmigo" />
+          <FunctionImportMapping FunctionImportName="usp_DelCarro" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelCarro" />
+          <FunctionImportMapping FunctionImportName="usp_DelCategoria" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_DelTelefono" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelTelefono" />
+          <FunctionImportMapping FunctionImportName="usp_DelUsuario" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_GetAmigos" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetAmigos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetAmigos_Result">
+                <ScalarProperty Name="AA_amigoID" ColumnName="AA_amigoID" />
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+                <ScalarProperty Name="US_apellido1" ColumnName="US_apellido1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetCantPassViaje" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetCantPassViaje">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetCantPassViaje_Result">
+                <ScalarProperty Name="cantPass" ColumnName="cantPass" />
+                <ScalarProperty Name="VU_viajeID" ColumnName="VU_viajeID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetCarro" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetCarro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetCarro_Result">
+                <ScalarProperty Name="CA_placa" ColumnName="CA_placa" />
+                <ScalarProperty Name="CA_marca" ColumnName="CA_marca" />
+                <ScalarProperty Name="CA_modelo" ColumnName="CA_modelo" />
+                <ScalarProperty Name="CA_pasa_cant" ColumnName="CA_pasa_cant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetCategorias" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetCategorias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetCategorias_Result">
+                <ScalarProperty Name="CA_ID" ColumnName="CA_ID" />
+                <ScalarProperty Name="CA_nombre" ColumnName="CA_nombre" />
+                <ScalarProperty Name="CA_puntaje" ColumnName="CA_puntaje" />
+                <ScalarProperty Name="CA_Umbral" ColumnName="CA_Umbral" />
+                <ScalarProperty Name="CA_UmbralPmes" ColumnName="CA_UmbralPmes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetInfoViaje" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetInfoViaje">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetInfoViaje_Result">
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+                <ScalarProperty Name="US_apellido1" ColumnName="US_apellido1" />
+                <ScalarProperty Name="CA_marca" ColumnName="CA_marca" />
+                <ScalarProperty Name="CA_modelo" ColumnName="CA_modelo" />
+                <ScalarProperty Name="CA_placa" ColumnName="CA_placa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetObjIntercambios" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetObjIntercambios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetObjIntercambios_Result">
+                <ScalarProperty Name="OI_fecha" ColumnName="OI_fecha" />
+                <ScalarProperty Name="OI_ID" ColumnName="OI_ID" />
+                <ScalarProperty Name="OI_nombre" ColumnName="OI_nombre" />
+                <ScalarProperty Name="OI_cantidad" ColumnName="OI_cantidad" />
+                <ScalarProperty Name="OI_precio" ColumnName="OI_precio" />
+                <ScalarProperty Name="OI_puntaje" ColumnName="OI_puntaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetPuntosGastados" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetPuntosGastados" />
+          <FunctionImportMapping FunctionImportName="usp_GetTelefonos" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetTelefonos" />
+          <FunctionImportMapping FunctionImportName="usp_GetUsuario" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetUsuario_Result">
+                <ScalarProperty Name="US_ID" ColumnName="US_ID" />
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+                <ScalarProperty Name="US_apellido1" ColumnName="US_apellido1" />
+                <ScalarProperty Name="US_apellido2" ColumnName="US_apellido2" />
+                <ScalarProperty Name="US_correo" ColumnName="US_correo" />
+                <ScalarProperty Name="US_rol" ColumnName="US_rol" />
+                <ScalarProperty Name="US_estadoCuenta" ColumnName="US_estadoCuenta" />
+                <ScalarProperty Name="US_categoria" ColumnName="US_categoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetViajes" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetViajes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetViajes_Result">
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+                <ScalarProperty Name="US_apellido1" ColumnName="US_apellido1" />
+                <ScalarProperty Name="VI_fecha" ColumnName="VI_fecha" />
+                <ScalarProperty Name="VI_parqueo" ColumnName="VI_parqueo" />
+                <ScalarProperty Name="VU_puntajeXviaje" ColumnName="VU_puntajeXviaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostAmigo" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostAmigo" />
+          <FunctionImportMapping FunctionImportName="usp_PostCarro" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostCarro" />
+          <FunctionImportMapping FunctionImportName="usp_PostCategoria" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_PostObjIntercambio" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostObjIntercambio" />
+          <FunctionImportMapping FunctionImportName="usp_PostTelefono" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostTelefono" />
+          <FunctionImportMapping FunctionImportName="usp_PostUsuario" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_PostViajes" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostViajes" />
+          <FunctionImportMapping FunctionImportName="usp_PutCategoria" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PutCategoria" />
+          <FunctionImportMapping FunctionImportName="usp_PutNoParqueo" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PutNoParqueo" />
+          <FunctionImportMapping FunctionImportName="usp_PutPuntaje" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PutPuntaje" />
+          <FunctionImportMapping FunctionImportName="usp_PutUsuario" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PutUsuario" />
+          <FunctionImportMapping FunctionImportName="usp_PostViajesXusuario" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostViajesXusuario" />
+          <FunctionImportMapping FunctionImportName="usp_GetPuntosGanados" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetPuntosGanados" />
+          <FunctionImportMapping FunctionImportName="usp_GetAllUser" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetAllUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetAllUser_Result">
+                <ScalarProperty Name="US_ID" ColumnName="US_ID" />
+                <ScalarProperty Name="US_nombre" ColumnName="US_nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="NOTIFICACIONES">
+            <EntityTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.NOTIFICACIONE">
+              <MappingFragment StoreEntitySet="NOTIFICACIONES">
+                <ScalarProperty Name="NO_descrip" ColumnName="NO_descrip" />
+                <ScalarProperty Name="NO_type" ColumnName="NO_type" />
+                <ScalarProperty Name="NO_userID" ColumnName="NO_userID" />
+                <ScalarProperty Name="NO_ID" ColumnName="NO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_DelNotifi" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_DelNotifi" />
+          <FunctionImportMapping FunctionImportName="usp_GetNotifi" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_GetNotifi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CARPOOLINGTECWebApi2019_dbModel.usp_GetNotifi_Result">
+                <ScalarProperty Name="NO_ID" ColumnName="NO_ID" />
+                <ScalarProperty Name="NO_userID" ColumnName="NO_userID" />
+                <ScalarProperty Name="NO_type" ColumnName="NO_type" />
+                <ScalarProperty Name="NO_descrip" ColumnName="NO_descrip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PostNotifi" FunctionName="CARPOOLINGTECWebApi2019_dbModel.Store.usp_PostNotifi" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38695c4c2af14723bd4bc5889a11ae1f" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.AMIGO" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.CARRO" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.OBJETOS_INTERCAMBIO" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.TELEFONO" Width="1.5" PointX="0.625" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.USUARIO" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.VIAJE" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.VIAJESXUSUARIO" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__AMIGOS__AA_amigo__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__AMIGOS__AA_userI__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__CARRO__CA_userID__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__VIAJES__VI_placa__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__USUARIO__US_cate__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__OBJETOS_I__OI_us__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__TELEFONOS__TE_us__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__VIAJES__VI_chofe__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__VIAJESXUS__VU_us__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__VIAJESXUS__VU_vi__5DCAEF64" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CARPOOLINGTECWebApi2019_dbModel.NOTIFICACIONE" Width="1.5" PointX="0.875" PointY="3.125" />
+        <AssociationConnector Association="CARPOOLINGTECWebApi2019_dbModel.FK__NOTIFICAC__NO_us__02084FDA" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
